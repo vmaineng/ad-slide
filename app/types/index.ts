@@ -5,3 +5,5 @@ export type AdEvent = {
     slot: string | null;
     ts: number;
 }
+
+export type Stage = "request" | "decision" | "delivery" | "tracking";
