@@ -22,16 +22,24 @@ export function useImaPlayer(
     };
     }, [])
 
-    useEffect(() => {
+  useEffect(() => {
     if (!sdkReady) return;
-      const google = window.google;
 
-    const adDisplayContainer = new google.ima.AdDisplayContainer(
-      adContainerRef.current,
-      videoRef.current
-    );
+    const container = adContainerRef.current;
+    const video = videoRef.current;
+
+    if (!container || !video || container.offsetWidth === 0 || container.offsetHeight === 0) {
+      console.warn(
+        "useImaPlayer: ad container not ready (missing or zero-sized), skipping ad request this pass."
+      );
+      return;
+    }
+
+    const google = window.google;
+
+  const adDisplayContainer = new google.ima.AdDisplayContainer(container, video);
     const adsLoader = new google.ima.AdsLoader(adDisplayContainer);
-
+    
     adsLoader.addEventListener(
       google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
       (e: any) => {

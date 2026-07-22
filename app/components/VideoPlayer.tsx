@@ -15,7 +15,11 @@ export default function VideoPlayer({
   return (
     <div>
       <div className="bg-black border-8 border-panel-raised rounded-md p-1 relative">
-        <div ref={adContainerRef} className="relative w-160 h-360">
+        <div
+          ref={adContainerRef}
+          className="relative w-160 h-360"
+          style={{ position: "relative", width: 640, height: 360 }}
+        >
           <video
             ref={videoRef}
             width={640}
