@@ -6,4 +6,4 @@ export type AdEvent = {
     ts: number;
 }
 
-export type Stage = "request" | "decision" | "delivery" | "tracking";
+export type SignalStage = "request" | "decision" | "delivery" | "tracking";
